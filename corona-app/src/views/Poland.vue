@@ -18,7 +18,12 @@
 
 
         <div class="small">
-            <line-chart :chart-data="historyData"/>
+            <h2>Dane historyczne</h2>
+            <line-chart
+                    v-if="loaded"
+                    :chartdata="historyData"
+                    :options="options"/>
+            <canvas id="chart" />
         </div>
     </div>
 </template>
@@ -29,7 +34,7 @@
     import {LMap} from 'vue2-leaflet';
     import 'leaflet/dist/leaflet.css';
     import {ChoroplethLayer, InfoControl, ReferenceChart} from "vue-choropleth";
-    import LineChart from '../components/LineChart'
+    import LineChart from '../components/Chart'
 
 
     export default {
@@ -59,8 +64,10 @@
                 currentStrokeColor: '3d3213',
                 departmentData: [],
                 historyData: {
-                    labels: ["Potwierdzone", "Śmierci", "Ozdrowieni", "Aktywni"],
+                    labels: [],
                     datasets: []},
+                loaded: false,
+                options: null,
             }
         },
         beforeCreate() {
@@ -89,26 +96,57 @@
                 redirect: 'follow'
             };
 
-            // {
-            //     label: 'Data One',
-            //         backgroundColor: '#f87979',
-            //     data: [16, 23]
-            // }, {
-            //     label: 'Data One',
-            //         backgroundColor: '#722c3c',
-            //         data: [31, 11]
-            // }
-
             fetch("https://api.covid19api.com/live/country/poland/status/confirmed", requestOptions)
                 .then(response => response.json())
                 .then(result => {
-                    result.forEach(day => {
-                        this.historyData.datasets.push({
-                            label: day.Date,
+                    function getDate(result) {
+                        let toReturn = [];
+                        result.forEach(day => toReturn.push(day.Date.substring(0, 10)));
+                        return toReturn;
+                    }
+                    function getConfirmed(result) {
+                        let toReturn = [];
+                        result.forEach(day => toReturn.push(day.Confirmed));
+                        return toReturn;
+                    }
+                    function getDeath(result) {
+                        let toReturn = [];
+                        result.forEach(day => toReturn.push(day.Death));
+                        return toReturn;
+                    }
+                    function getRecovered(result) {
+                        let toReturn = [];
+                        result.forEach(day => toReturn.push(day.Recovered));
+                        return toReturn;
+                    }
+                    function getActive(result) {
+                        let toReturn = [];
+                        result.forEach(day => toReturn.push(day.Active));
+                        return toReturn;
+                    }
+
+                    this.historyData.labels = getDate(result);
+                    this.historyData.datasets = [{
+                            label: 'Potwierdzone',
                             backgroundColor: '#722c3c',
-                            data: [day.Confirmed, day.Deaths, day.Recovered, day.Active]
-                        });
-                    })
+                            data: getConfirmed(result)
+                        },
+                            {
+                                label: 'Śmierci',
+                                backgroundColor: '#679552',
+                                data: getDeath(result)
+                            },
+                            {
+                                label: 'Wyzdrowiali',
+                                backgroundColor: '#9ea6ac',
+                                data: getRecovered(result)
+                            },
+                            {
+                                label: 'Aktywni',
+                                backgroundColor: '#d47d23',
+                                data: getActive(result)
+                            }];
+                    this.loaded = true;
                 });
         }
     }
@@ -118,6 +156,8 @@
         background-color: #eee;
     }
     .small {
-        max-width: 600px;
+        max-width: 1500px;
+        margin-left: auto;
+        margin-right: auto
     }
 </style>
