@@ -3,7 +3,7 @@
         <span class="flag"><img :src="getImgUrl(flag)"></span>
 
         <span class="country">{{country}}</span>
-        <span>Liczba zakażonych: 19022</span>
+        <span>Liczba zakażonych: {{count}}</span>
     </div>    
 </template>
 
