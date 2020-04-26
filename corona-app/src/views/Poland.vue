@@ -23,8 +23,18 @@
                     v-if="loaded"
                     :chartdata="historyData"
                     :options="options"/>
-            <canvas id="chart" />
+            <canvas id="chart"/>
         </div>
+
+        <div id="map">
+            <h2>Zbiórka dla szpitali</h2>
+
+            <a href="https://www.siepomaga.pl/koronawirus">
+                <h2>Wspomóż polską służbę zdrowia w walce z naszym wspólnym wrogiem!</h2>
+                <img src="https://img.siepomaga.pl/uploads/cause/main_photo/21753/big_59aab805-ed84-460d-9215-3793549fba68.jpg"/>
+            </a>
+        </div>
+
     </div>
 </template>
 <script>
@@ -65,7 +75,8 @@
                 departmentData: [],
                 historyData: {
                     labels: [],
-                    datasets: []},
+                    datasets: []
+                },
                 loaded: false,
                 options: null,
             }
@@ -104,21 +115,25 @@
                         result.forEach(day => toReturn.push(day.Date.substring(0, 10)));
                         return toReturn;
                     }
+
                     function getConfirmed(result) {
                         let toReturn = [];
                         result.forEach(day => toReturn.push(day.Confirmed));
                         return toReturn;
                     }
+
                     function getDeath(result) {
                         let toReturn = [];
                         result.forEach(day => toReturn.push(day.Death));
                         return toReturn;
                     }
+
                     function getRecovered(result) {
                         let toReturn = [];
                         result.forEach(day => toReturn.push(day.Recovered));
                         return toReturn;
                     }
+
                     function getActive(result) {
                         let toReturn = [];
                         result.forEach(day => toReturn.push(day.Active));
@@ -127,25 +142,25 @@
 
                     this.historyData.labels = getDate(result);
                     this.historyData.datasets = [{
-                            label: 'Potwierdzone',
-                            backgroundColor: '#722c3c',
-                            data: getConfirmed(result)
+                        label: 'Potwierdzone',
+                        backgroundColor: '#722c3c',
+                        data: getConfirmed(result)
+                    },
+                        {
+                            label: 'Śmierci',
+                            backgroundColor: '#679552',
+                            data: getDeath(result)
                         },
-                            {
-                                label: 'Śmierci',
-                                backgroundColor: '#679552',
-                                data: getDeath(result)
-                            },
-                            {
-                                label: 'Wyzdrowiali',
-                                backgroundColor: '#9ea6ac',
-                                data: getRecovered(result)
-                            },
-                            {
-                                label: 'Aktywni',
-                                backgroundColor: '#d47d23',
-                                data: getActive(result)
-                            }];
+                        {
+                            label: 'Wyzdrowiali',
+                            backgroundColor: '#9ea6ac',
+                            data: getRecovered(result)
+                        },
+                        {
+                            label: 'Aktywni',
+                            backgroundColor: '#d47d23',
+                            data: getActive(result)
+                        }];
                     this.loaded = true;
                 });
         }
@@ -155,6 +170,7 @@
     #map {
         background-color: #eee;
     }
+
     .small {
         max-width: 1500px;
         margin-left: auto;
