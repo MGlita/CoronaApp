@@ -1,10 +1,18 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 import Home from '../views/Home.vue'
+
 import Country from '../views/Country.vue'
 
 
 Vue.use(VueRouter)
+
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+import L from 'leaflet';
+Vue.use(VueRouter);
+Vue.use(VueAxios, axios);
+
 
   const routes: Array<RouteConfig> = [
   {
@@ -39,12 +47,12 @@ Vue.use(VueRouter)
     component: Country
 
   }
-]
+];
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
-})
+});
 
 export default router
