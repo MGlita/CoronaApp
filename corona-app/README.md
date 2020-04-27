@@ -17,3 +17,6 @@ npm run build
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+#### Credits
+Poland map - https://github.com/ppatrzyk/polska-geojson
