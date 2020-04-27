@@ -1,10 +1,10 @@
 <template>
-    <div class="block">
+    <router-link tag="div" class="block" :to="{name:'Country', params: {countryName: country, countryUrlName:flag, casesTotal:count}}">
         <span class="flag"><img :src="getImgUrl(flag)"></span>
 
         <span class="country">{{country}}</span>
         <span>Liczba zakażonych: {{count}}</span>
-    </div>    
+    </router-link>    
 </template>
 
 <script lang="ts">
@@ -36,6 +36,7 @@ export default class CountryBlock extends Vue {
     align-items: center;
     justify-content: center;
     transition: 0.3s;
+    min-width: 220px;
 }
 .block:hover{
     transform: scale(1.1);
