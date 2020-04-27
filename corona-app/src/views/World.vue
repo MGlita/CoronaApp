@@ -21,7 +21,7 @@ export default {
     countries:[
       {
         "name":"USA",
-        "flag":"usa.png",
+        "flag":"united-states.png",
         "rates":0
       },
       {
@@ -46,7 +46,7 @@ export default {
       },
       {
         "name":"Wielka Brytania",
-        "flag":"britain.png",
+        "flag":"united-kingdom.png",
         "rates":0
       },
       {
@@ -58,13 +58,13 @@ export default {
   },
   beforeCreate(){
           const setRates = (data) => { 
-            this.countries[0].rates = data[236].TotalConfirmed;
-            this.countries[1].rates = data[208].TotalConfirmed;
-            this.countries[2].rates = data[108].TotalConfirmed;
-            this.countries[3].rates = data[74].TotalConfirmed;
-            this.countries[4].rates = data[81].TotalConfirmed;
-            this.countries[5].rates = data[235].TotalConfirmed;
-            this.countries[6].rates = data[45].TotalConfirmed;
+            this.countries[0].rates = data.find(obj => {return obj.CountryCode==="US"}).TotalConfirmed;
+            this.countries[1].rates = data.find(obj => {return obj.CountryCode==="ES"}).TotalConfirmed;
+            this.countries[2].rates = data.find(obj => {return obj.CountryCode==="IT"}).TotalConfirmed;
+            this.countries[3].rates = data.find(obj => {return obj.CountryCode==="FR"}).TotalConfirmed;
+            this.countries[4].rates = data.find(obj => {return obj.CountryCode==="DE"}).TotalConfirmed;
+            this.countries[5].rates = data.find(obj => {return obj.CountryCode==="GB"}).TotalConfirmed;
+            this.countries[6].rates = data.find(obj => {return obj.CountryCode==="CN"}).TotalConfirmed;
             
             };
           const request = new XMLHttpRequest();
@@ -76,7 +76,6 @@ export default {
           function onReady() {
             if (this.readyState === 4 && this.status === 200) {
               setRates(this.response.Countries);
-              console.log(this.response.Countries);
           }
           }
         }
@@ -101,4 +100,5 @@ export default {
   flex-wrap: wrap;
   justify-content: space-around;
 }
+
 </style>
