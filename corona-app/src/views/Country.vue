@@ -3,6 +3,12 @@
     <h1>{{countryName}}</h1><br><br>
     <h2>Całkowita liczba zakażonych: <b>{{casesTotal}}</b></h2><br>
     <canvas class="chart" id="myChart"></canvas>
+    <div class="fund"> 
+      <h2>Wspomóż walkę z koronawirusem na świecie</h2><br>
+      <a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019/donate">
+        <img class="logo" src="https://logos-download.com/wp-content/uploads/2016/12/World_Health_Organization_logo_logotype.png" alt="">
+      </a>
+    </div>
   </div>
 </template>
 
@@ -71,5 +77,14 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.fund{
+  width: 100%;
+  margin-top:50px;
+  background: #eee;
+}
+.logo{
+  width: 80%;
+  height: auto;
 }
 </style>
