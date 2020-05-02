@@ -1,9 +1,11 @@
 <template>
   <div class="world">
+    <div class="page_content">
     <div class="header"><p>Świat</p></div>
     <div class="secondary"><p>Strona przedstawiająca zachorowania w wybranych krajach</p></div>
     <div class="countries">
       <CountryBlock v-for="item in countries" v-bind:key="item.id" :country="item.name" :flag="item.flag" :count="item.rates"></CountryBlock>
+    </div>
     </div>
   </div>
 </template>
@@ -82,9 +84,23 @@ export default {
 }
 </script>
 <style scoped>
-.world{
-  margin-top:30px;
+.world {
+    background-color: #dde4f0;
+    margin: 0px; 
+    padding: 0px;
+    min-height: calc(100vh - 3rem);
 }
+.page_content {
+    background-color: #FFFFFF;
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 80%;
+    margin: 0px; 
+    padding: 0px;
+    min-height: calc(100vh - 6rem);
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
 .header{
   font-size: 70px;
   font-weight: 500;

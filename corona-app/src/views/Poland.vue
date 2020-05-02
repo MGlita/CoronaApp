@@ -1,7 +1,7 @@
 <template>
     <div class="poland">
+        <div class="page_content">
         <h1>Polska</h1>
-
         <h3>Mapa zachorowań w Polsce</h3>
         <l-map style="height: 500px;" :zoom="6" :center="[ 52.0651,  19.252522]" :options="mapOptions">
             <l-choropleth-layer :data="departmentData" titleKey="department_name" idKey="department_name"
@@ -16,6 +16,7 @@
             </l-choropleth-layer>
         </l-map>
 
+        <hr/>
 
         <div class="small">
             <h2>Dane historyczne</h2>
@@ -25,7 +26,7 @@
                     :options="options"/>
             <canvas id="chart"/>
         </div>
-
+        <hr/>
         <div id="map">
             <h2>Zbiórka dla szpitali</h2>
 
@@ -34,7 +35,7 @@
                 <img src="https://img.siepomaga.pl/uploads/cause/main_photo/21753/big_59aab805-ed84-460d-9215-3793549fba68.jpg"/>
             </a>
         </div>
-
+        </div>
     </div>
 </template>
 <script>
@@ -167,10 +168,34 @@
     }
 </script>
 <style>
+    .poland {
+        background-color: #dde4f0;
+        margin: 0px; 
+        padding: 0px;
+        min-height: calc(100vh - 3rem);
+    }
+    .page_content {
+        background-color: #FFFFFF;
+        box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        width: 80%;
+        margin: 0px; 
+        padding: 0px;
+        min-height: calc(100vh - 6rem);
+        margin-left: 10%;
+        margin-right: 10%;
+        padding-bottom: 40px;
+    }
+    hr {
+        border: 2px solid #dde4f0;
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+        margin-top: 35px;
+        margin-bottom: 30px;
+    }
     #map {
         background-color: #eee;
     }
-
     .small {
         max-width: 1500px;
         margin-left: auto;

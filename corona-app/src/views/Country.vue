@@ -1,5 +1,8 @@
 <template>
+  <div class="country">
+  <div class="page_content">
   <div class="container2"><br>
+  
     <h1>{{countryName}}</h1><br><br>
     <h2>Całkowita liczba zakażonych: <b>{{casesTotal}}</b></h2><br>
     <canvas class="chart" id="myChart"></canvas>
@@ -9,6 +12,8 @@
         <img class="logo" src="https://logos-download.com/wp-content/uploads/2016/12/World_Health_Organization_logo_logotype.png" alt="">
       </a>
     </div>
+  </div>
+  </div>
   </div>
 </template>
 
@@ -46,7 +51,7 @@ export default {
                   data: {
                       labels: this.response.map(c=>c.Date.substring(0,c.Date.length-10)),
                       datasets: [{
-                          label: '# ilość zakażonych',
+                          label: ' ilość zakażonych',
                           data: this.response.map(c=>c.Cases),
                           backgroundColor: 'rgba(255, 99, 132, 0.2)',
                           borderColor: 'rgba(255, 99, 132, 1)',
@@ -68,6 +73,22 @@ export default {
 }
 </script>
 <style scoped>
+.country {
+    background-color: #dde4f0;
+    margin: 0px; 
+    padding: 0px;
+    min-height: calc(100vh - 3rem);
+    }
+.page_content {
+    background-color: #FFFFFF;
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 80%;
+    margin: 0px; 
+    padding: 0px;
+    min-height: calc(100vh - 6rem);
+    margin-left: 10%;
+    margin-right: 10%;
+}
 .chart{
   max-width: 80em;
   max-height: 50em;
