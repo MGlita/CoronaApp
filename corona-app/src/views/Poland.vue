@@ -94,7 +94,7 @@
                 });
             };
 
-            fetch('http://longhorn.pl:7331/covid/province')
+            fetch('https://cors-anywhere.herokuapp.com/http://longhorn.pl:7331/covid/province')
                 .then((response) => {
                     return response.json();
                 })
