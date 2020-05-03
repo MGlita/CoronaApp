@@ -37,8 +37,8 @@ export default {
         "rates":0
       },
       { 
-        "name":"Francja",
-        "flag":"france.png",
+        "name":"Szwecja",
+        "flag":"sweden.png",
         "rates":0
       },
       {
@@ -60,13 +60,13 @@ export default {
   },
   beforeCreate(){
           const setRates = (data) => { 
-            this.countries[0].rates = data.find(obj => {return obj.CountryCode==="US"}).TotalConfirmed;
-            this.countries[1].rates = data.find(obj => {return obj.CountryCode==="ES"}).TotalConfirmed;
-            this.countries[2].rates = data.find(obj => {return obj.CountryCode==="IT"}).TotalConfirmed;
-            this.countries[3].rates = data.find(obj => {return obj.CountryCode==="FR"}).TotalConfirmed;
-            this.countries[4].rates = data.find(obj => {return obj.CountryCode==="DE"}).TotalConfirmed;
-            this.countries[5].rates = data.find(obj => {return obj.CountryCode==="GB"}).TotalConfirmed;
-            this.countries[6].rates = data.find(obj => {return obj.CountryCode==="CN"}).TotalConfirmed;
+             this.countries[0].rates = data.find(obj => {return obj.CountryCode==="US"})==undefined?0:data.find(obj => {return obj.CountryCode==="US"}).TotalConfirmed;
+             this.countries[1].rates = data.find(obj => {return obj.CountryCode==="ES"})===undefined?0:data.find(obj => {return obj.CountryCode==="ES"}).TotalConfirmed;
+             this.countries[2].rates = data.find(obj => {return obj.CountryCode==="IT"})===undefined?0:data.find(obj => {return obj.CountryCode==="IT"}).TotalConfirmed;
+             this.countries[3].rates = data.find(obj => {return obj.CountryCode==="SE"})===undefined?0:data.find(obj => {return obj.CountryCode==="SE"}).TotalConfirmed;
+             this.countries[4].rates = data.find(obj => {return obj.CountryCode==="DE"})===undefined?0:data.find(obj => {return obj.CountryCode==="DE"}).TotalConfirmed;
+             this.countries[5].rates = data.find(obj => {return obj.CountryCode==="GB"})===undefined?0:data.find(obj => {return obj.CountryCode==="GB"}).TotalConfirmed;
+             this.countries[6].rates = data.find(obj => {return obj.CountryCode==="CN"})===undefined?0:data.find(obj => {return obj.CountryCode==="CN"}).TotalConfirmed;
             
             };
           const request = new XMLHttpRequest();
@@ -78,6 +78,7 @@ export default {
           function onReady() {
             if (this.readyState === 4 && this.status === 200) {
               setRates(this.response.Countries);
+              console.log(this.response);
           }
           }
         }

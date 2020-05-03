@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
+// @ts-ignore
 import Home from '../views/Home.vue'
 
 import Country from '../views/Country.vue'
