@@ -26,7 +26,7 @@
     "@types/chart.js": "^2.9.20",
     "@vue/cli-plugin-router": "~4.3.0",
     "@vue/cli-plugin-typescript": "~4.3.0",
-    "@vue/cli-service": "~4.3.0",
+    "@vue/cli-service": "~5.0.8",
     "typescript": "~3.8.3",
     "vue-template-compiler": "^2.6.11"
   },
